@@ -1,0 +1,32 @@
+version: '3.6'
+
+services:
+  web:
+    build: .
+    environment:
+      - ADMINS=Diogo Alves:diogo.alves.ti@gmail.com
+      - ALLOWED_HOSTS=.localhost, 0.0.0.0, 127.0.0.1
+      - DATABASE_URL=postgres://postgres:postgres@db/postgres
+      - DEBUG=1
+      - INTERNAL_IPS=127.0.0.1
+      - SECRET_KEY=django-insecure-to-0*uzynd8zoma_rv_+@1sk!m9sdv2d-z(!ffa5@k5+ln!%!a
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+
+  db:
+    image: postgres:11
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+
+volumes:
+  postgres_data:
+
