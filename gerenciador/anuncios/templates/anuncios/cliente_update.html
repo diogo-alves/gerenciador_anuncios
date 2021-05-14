@@ -1,0 +1,26 @@
+{% extends "base_site.html" %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Editar cliente | {{ block.super }}{% endblock title %}
+
+{% block content %}
+  <div class="col-xl-8 mx-auto">
+    <div class="card">
+      <form method="post">
+        {% csrf_token %}
+        <div class="card-header p-4">
+          <h1>Editar Cliente</h1>
+        </div>
+        <div class="card-body mx-4">
+          {{ form|crispy }}
+        </div>
+        <div class="card-footer d-flex flex-column flex-md-row p-4">
+          <input class="btn btn-primary order-2" type="submit" value="Salvar Alterações">
+          <a class="btn btn-link d-none d-md-block me-auto order-1" href="{{ view.get_success_url }}">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock content %}

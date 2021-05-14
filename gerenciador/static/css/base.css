@@ -1,0 +1,30 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: "Nunito", Helvetica Neue, -apple-system, Segoe UI, Noto Sans, Cantarell, Ubuntu;
+    background-color: hsl(0, 0%, 95%);
+}
+
+.wrapper {
+    align-items: stretch;
+    display: flex;
+    width: 100%;
+}
+
+.main {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    min-width: 0;
+    transition: margin-left .35s ease-in-out,left .35s ease-in-out;
+    flex-direction: column;
+}
+
+@media (max-width: 991.98px) {
+    .content {
+        width: 100vw;
+        max-width: 100vw;
+    }
+}

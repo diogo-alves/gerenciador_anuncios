@@ -15,8 +15,8 @@ __all__ = (
 NUM_MAX_COMPARTILHAMENTOS_EM_SEQUENCIA = 4
 NUM_VIEWS_ANUNCIO_ORIGINAL_POR_REAL_INVESTIDO = 30
 NUM_VIEWS_POR_ANUNCIO_COMPARTILHADO = 40
-TAXA_CONVERSAO_CLIQUES_EM_COMPARTILHAMENTOS = 0.15
-TAXA_CONVERSAO_VIEWS_EM_CLIQUES = 0.12
+PERCENTUAL_CONVERSAO_CLIQUES_EM_COMPARTILHAMENTOS = 15
+PERCENTUAL_CONVERSAO_VIEWS_EM_CLIQUES = 12
 
 
 def calcula_alcance_anuncio(valor_investido):
@@ -69,7 +69,7 @@ def converte_views_em_cliques(num_views):
     Retorna o número de cliques que uma determinada quantidade de views
     pode gerar, levando em conta a taxa de conversão de views em cliques.
     """
-    cliques = num_views * TAXA_CONVERSAO_VIEWS_EM_CLIQUES
+    cliques = num_views * PERCENTUAL_CONVERSAO_VIEWS_EM_CLIQUES / 100
     return cliques
 
 
@@ -79,7 +79,7 @@ def converte_cliques_em_compartilhamentos(num_cliques):
     de cliques no anúncio pode gerar, levando em conta a taxa de
     conversão de cliques em compartilhamentos.
     """
-    compartilhamentos = num_cliques * TAXA_CONVERSAO_CLIQUES_EM_COMPARTILHAMENTOS
+    compartilhamentos = num_cliques * PERCENTUAL_CONVERSAO_CLIQUES_EM_COMPARTILHAMENTOS / 100
     return compartilhamentos
 
 

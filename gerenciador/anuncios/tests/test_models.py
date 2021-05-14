@@ -31,13 +31,13 @@ class AnuncioModelTest(TestCase):
         self.assertEqual(self.anuncio.total_investido, 500)
 
     def test_visualizacoes(self):
-        self.assertEqual(self.anuncio.visualizacoes, 39174.72)
+        self.assertEqual(self.anuncio.visualizacoes, int(39174.72))
 
     def test_cliques(self):
-        self.assertEqual(self.anuncio.cliques, 4700.9664)
+        self.assertEqual(self.anuncio.cliques, int(4700.9664))
 
     def test_compartilhamentos(self):
-        self.assertEqual(self.anuncio.compartilhamentos, 705.14496)
+        self.assertEqual(self.anuncio.compartilhamentos, int(705.14496))
 
     def test_campos_data_inicio_e_data_termino_devem_ser_preenchidos(self):
         mensagem_esperada = str({

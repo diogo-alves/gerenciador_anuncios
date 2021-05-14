@@ -18,6 +18,8 @@ from dj_database_url import parse as db_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+APPS_DIR = BASE_DIR / 'gerenciador'
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -44,9 +46,15 @@ DJANGO_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
 ]
 
-THIRD_PARTY_APPS = []
+THIRD_PARTY_APPS = [
+    'crispy_forms',
+    'django_tables2',
+    'django_extensions',
+    'crispy_bootstrap5',
+]
 
 LOCAL_APPS = [
     'gerenciador.anuncios.apps.AnunciosConfig',
@@ -69,7 +77,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [APPS_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -82,6 +90,22 @@ TEMPLATES = [
     },
 ]
 
+
+# https://django-tables2.readthedocs.io/en/latest/pages/custom-rendering.html
+
+DJANGO_TABLES2_TEMPLATE = 'django_tables2/bootstrap5.html'
+DJANGO_TABLES2_PAGE_RANGE = 5
+
+
+# https://pypi.org/project/crispy-bootstrap5/
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+# https://django-crispy-forms.readthedocs.io/en/latest/install.html#template-packs
+
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
+
+
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
@@ -91,7 +115,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': config(
         'DATABASE_URL',
-        default='sqlite:///' / BASE_DIR / 'db.sqlite3',
+        default='sqlite:///' + str(BASE_DIR / 'db.sqlite3'),
         cast=db_url
     )
 }
@@ -134,6 +158,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    APPS_DIR / 'static',
+]
+
+STATIC_ROOT = APPS_DIR / 'staticfiles'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

@@ -1,6 +1,5 @@
 import uuid
 from decimal import Decimal
-from typing import Union
 
 from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator
@@ -24,10 +23,15 @@ class Cliente(models.Model):
 
     class Meta:
         db_table = 'cliente'
+        ordering = ['nome']
 
     def __str__(self) -> str:
         """Retorna a representação textual do cliente"""
         return self.nome
+
+    def get_absolute_url(self) -> str:
+        """Retorna a url para a página que detalha o cliente"""
+        return reverse('anuncios:cliente_detail', kwargs={'pk': self.id})
 
 
 class Anuncio(models.Model):
@@ -53,7 +57,7 @@ class Anuncio(models.Model):
 
     class Meta:
         db_table = 'anuncio'
-        ordering = ['-data_inicio']
+        ordering = ['-data_inicio', '-data_termino']
         verbose_name = 'anúncio'
         verbose_name_plural = 'anúncios'
 
@@ -78,22 +82,25 @@ class Anuncio(models.Model):
     @property
     def total_investido(self) -> Decimal:
         """
-        Retorna o valor total investido com base na quantidade de dias
-        em que o anúncio esteve ativo
+        Retorna o valor total investido de acordo com a quantidade de
+        dias em que o anúncio esteve ativo
         """
         return self.investimento_diario * self.dias_ativo
 
     @property
-    def visualizacoes(self) -> Union[int, float]:
+    def visualizacoes(self) -> int:
         """Retorna a quantidade máxima de visualizações do anúncio"""
-        return calcula_alcance_anuncio(self.total_investido)
+        visualizacoes = calcula_alcance_anuncio(self.total_investido)
+        return int(visualizacoes)
 
     @property
-    def cliques(self) -> Union[int, float]:
+    def cliques(self) -> int:
         """Retorna a quantidade máxima de cliques do anúncio"""
-        return converte_views_em_cliques(self.visualizacoes)
+        cliques = converte_views_em_cliques(self.visualizacoes)
+        return int(cliques)
 
     @property
-    def compartilhamentos(self) -> Union[int, float]:
+    def compartilhamentos(self) -> int:
         """Retorna a quantidade máxima de compartilhamentos do anúncio"""
-        return converte_cliques_em_compartilhamentos(self.cliques)
+        compartilhamentos = converte_cliques_em_compartilhamentos(self.cliques)
+        return int(compartilhamentos)

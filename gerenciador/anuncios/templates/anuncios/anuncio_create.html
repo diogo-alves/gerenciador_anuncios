@@ -1,0 +1,39 @@
+{% extends "base_site.html" %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Cadastrar anúncio | {{ block.super }}{% endblock title %}
+
+{% block content %}
+  <div class="col-xl-8 mx-auto">
+    <div class="card">
+      <form method="post">
+        {% csrf_token %}
+        <div class="card-header p-4">
+          <h1 class="mx-4">Cadastrar Anúncio</h1>
+        </div>
+        <div class="card-body mx-4">
+          {% include 'anuncios/_anuncio_form_fields.html' %}
+        </div>
+        <div class="card-footer d-flex flex-column flex-md-row p-4">
+          <button class="btn btn-primary ms-md-2 order-md-3" type="submit">Salvar</button>
+          <button class="btn btn-outline-primary mt-2 mt-md-0 order-md-2"
+                  type="submit" name="btn_salvar_e_adicionar_outro">Salvar e adicionar outro</button>
+          <a class="btn btn-link d-none d-md-block me-auto order-md-1" href="{% url 'anuncios:anuncio_list' %}">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock content %}
+
+
+{% block javascript %}
+  {{ block.super }}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous"></script>
+  <script>
+    $(document).ready(function(){
+      $('#id_data_inicio').mask('00/00/0000');
+    });
+  </script>
+{% endblock javascript %}

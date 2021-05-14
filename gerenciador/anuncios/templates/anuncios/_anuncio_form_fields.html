@@ -1,0 +1,10 @@
+{% load crispy_forms_tags %}
+
+<div class="row">
+	{{ form|as_crispy_errors }}
+	{{ form.nome|as_crispy_field }}
+	{{ form.cliente|as_crispy_field }}
+	<div class="col-lg-4">{{ form.data_inicio|as_crispy_field }}</div>
+	<div class="col-lg-4">{{ form.data_termino|as_crispy_field }}</div>
+	<div class="col-lg-4">{{ form.investimento_diario|as_crispy_field }}</div>
+</div>

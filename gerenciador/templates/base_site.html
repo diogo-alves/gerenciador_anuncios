@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block stylesheet %}
+  {{ block.super }}
+  <link href="{% static 'css/base_site.css' %}" rel="stylesheet">
+{% endblock stylesheet %}
+
+{% block footer %}
+  <footer class="footer mt-auto">
+    <div class="container text-muted text-center">
+      <p>Feito com <i class="bi bi-heart-fill"></i> &amp; <a href="https://www.djangoproject.com/"><img src="{% static "img/django.svg" %}" alt="Django"/></a> por <a href="https://www.linkedin.com/mwlite/in/diogoalvesti" class="text-decoration-none"><strong class="text-reset">Diogo Alves</strong></a>
+      </p>
+    </div>
+  </footer>
+{% endblock footer %}

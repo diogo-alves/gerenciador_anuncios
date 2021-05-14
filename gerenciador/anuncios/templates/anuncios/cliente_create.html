@@ -1,0 +1,28 @@
+{% extends "base_site.html" %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Cadastrar cliente | {{ block.super }}{% endblock title %}
+
+{% block content %}
+  <div class="col-xl-8 mx-auto">
+    <div class="card">
+      <form method="post">
+        {% csrf_token %}
+        <div class="card-header p-4">
+          <h1>Cadastrar Cliente</h1>
+        </div>
+        <div class="card-body mx-4">
+          {{ form|crispy }}
+        </div>
+        <div class="card-footer d-flex flex-column flex-md-row p-4">
+          <button class="btn btn-primary ms-md-2 order-md-3" type="submit">Salvar</button>
+          <button class="btn btn-outline-primary mt-2 mt-md-0 order-md-2"
+                  type="submit" name="btn_salvar_e_adicionar_outro">Salvar e adicionar outro</button>
+          <a class="btn btn-link d-none d-md-block me-auto order-md-1" href="{% url 'anuncios:cliente_list' %}">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock content %}

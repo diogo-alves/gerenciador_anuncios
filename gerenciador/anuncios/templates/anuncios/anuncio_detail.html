@@ -1,0 +1,108 @@
+{% extends "base_site.html" %}
+
+{% load static %}
+{% load humanize %}
+{% load verbose_name from anuncios_tags %}
+
+{% block title %}Detalhes do anúncio | {{ block.super }}{% endblock title %}
+
+{% block content %}
+  <div class="col mb-2">
+    <div class="card">
+      <div class="card-header p-4">
+        <div class="d-flex flex-column flex-lg-row align-items-md-end mx-4">
+          <h1 class="card-title me-auto">Detalhes do anúncio</h1>
+          <div class="d-flex">
+            <div class="flex-fill">
+              <a class="btn btn-light btn-block" href="{% url 'anuncios:anuncio_list' %}">
+                <i class="bi bi-arrow-left" aria-hidden="true"></i>
+                <span>Voltar</span>
+              </a>
+              <button class="btn btn-outline-danger mx-2" type="button" data-bs-toggle="modal" data-bs-target="#modalDelete"
+                title="Excluir" data-bs-url="{% url 'anuncios:anuncio_delete' anuncio.pk %}"
+                data-bs-model="{{ anuncio|verbose_name }}" data-bs-object="{{ anuncio }}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                </svg>
+              </button>
+              <a class="btn btn-primary btn-block" href="{% url 'anuncios:anuncio_update' anuncio.pk %}">
+                <i class="bi bi-pencil-square"></i>
+                <span>Editar</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body mx-4">
+        <table class="table table-sm">
+          <tbody>
+            <tr>
+              <th>Nome</th>
+              <td>{{ anuncio.nome }}</td>
+            </tr>
+            <tr>
+              <th>Cliente</th>
+              <td>{{ anuncio.cliente }}</td>
+            </tr>
+            <tr>
+              <th>Data de início</th>
+              <td>{{ anuncio.data_inicio }}</td>
+            </tr>
+            <tr>
+              <th>Data de término</th>
+              <td>{{ anuncio.data_termino }}</td>
+            </tr>
+            <tr>
+              <th>Investimento diário</th>
+              <td>R$ {{ anuncio.investimento_diario|intcomma }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="py-4">
+          <h3>Projeções</h3>
+          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 text-center">
+            <div class="col mb-3">
+              <div class="card rounded-3 shadow-sm h-100">
+                <div class="card-body">
+                  <h2 class="card-title">R$ {{ anuncio.total_investido|intcomma }}</h2>
+                  <p class="card-text">Investido{{ anuncio.total_investido|pluralize }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="col mb-3">
+              <div class="card rounded-3 shadow-sm h-100">
+                <div class="card-body">
+                  <h2 class="card-title">{{ anuncio.visualizacoes|intcomma }}</h2>
+                  <p class="card-title">Visualizaç{{ anuncio.visualizacoes|pluralize:"ão,ões" }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="col mb-3">
+              <div class="card rounded-3 shadow-sm h-100">
+                <div class="card-body">
+                  <h2 class="card-title">{{ anuncio.cliques|intcomma }}</h2>
+                  <p class="card-text">Clique{{ anuncio.cliques|pluralize }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="col mb-3">
+              <div class="card rounded-3 shadow-sm h-100">
+                <div class="card-body">
+                  <h2 class="card-title">{{ anuncio.compartilhamentos|intcomma }}</h2>
+                  <p class="card-text">Compartilhamento{{ anuncio.compartilhamentos|pluralize }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% include "includes/modal_confirm_delete.html" %}
+  </div>
+{% endblock content %}
+
+{% block javascript %}
+  {{ block.super }}
+  <script src="{% static 'js/modalDelete.js' %}"></script>
+{% endblock javascript %}
