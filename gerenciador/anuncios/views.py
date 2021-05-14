@@ -1,22 +1,21 @@
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views.generic import (
-    CreateView,
-    DetailView,
-    UpdateView,
-    DeleteView
+    CreateView, DetailView, UpdateView, DeleteView
 )
 
 from django_tables2 import SingleTableMixin, SingleTableView
 
 from .forms import AnuncioForm, ClienteForm
+from .mixins import SuccessMessageDeletionMixin
 from .models import Anuncio, Cliente
 from .tables import AnuncioTable, ClienteTable
 
 
-class ClienteCreateView(CreateView):
+class ClienteCreateView(SuccessMessageMixin, CreateView):
     model = Cliente
     form_class = ClienteForm
+    success_message = 'Cliente "%(nome)s" criado com sucesso!'
     template_name = 'anuncios/cliente_create.html'
 
     def get_success_url(self):
@@ -38,15 +37,17 @@ class ClienteDetailView(SingleTableMixin, DetailView):
         return {'exclude': ('id', 'cliente')}
 
 
-class ClienteUpdateView(UpdateView):
+class ClienteUpdateView(SuccessMessageMixin, UpdateView):
     model = Cliente
     form_class = ClienteForm
+    success_message = 'Cliente "%(nome)s" alterado com sucesso!'
     template_name = 'anuncios/cliente_update.html'
 
 
-class ClienteDeleteView(DeleteView):
+class ClienteDeleteView(SuccessMessageDeletionMixin, DeleteView):
     model = Cliente
     form_class = ClienteForm
+    success_message = 'Cliente "%(nome)s" excluído com sucesso!'
     success_url = reverse_lazy('anuncios:cliente_list')
 
 
@@ -64,6 +65,7 @@ class ClienteListView(SingleTableView):
 class AnuncioCreateView(SuccessMessageMixin, CreateView):
     model = Anuncio
     form_class = AnuncioForm
+    success_message = 'Anúncio "%(nome)s" criado com sucesso!'
     template_name = 'anuncios/anuncio_create.html'
 
     def get_success_url(self):
@@ -78,15 +80,17 @@ class AnuncioDetailView(DetailView):
     template_name = 'anuncios/anuncio_detail.html'
 
 
-class AnuncioUpdateView(UpdateView):
+class AnuncioUpdateView(SuccessMessageMixin, UpdateView):
     model = Anuncio
     form_class = AnuncioForm
+    success_message = 'Anúncio "%(nome)s" alterado com sucesso!'
     template_name = 'anuncios/anuncio_update.html'
 
 
-class AnuncioDeleteView(DeleteView):
+class AnuncioDeleteView(SuccessMessageDeletionMixin, DeleteView):
     model = Anuncio
     form_class = AnuncioForm
+    success_message = 'Anúncio "%(nome)s" excluído com sucesso!'
     success_url = reverse_lazy('anuncios:anuncio_list')
 
 

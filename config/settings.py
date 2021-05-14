@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 
+from django.contrib.messages import constants as messages
+
 from decouple import config, Csv
 from dj_database_url import parse as db_url
 
@@ -89,6 +91,17 @@ TEMPLATES = [
         },
     },
 ]
+
+
+# https://docs.djangoproject.com/en/3.2/ref/contrib/messages/#message-tags
+
+MESSAGE_TAGS = {
+    messages.DEBUG: 'secondary',
+    messages.INFO: 'info',
+    messages.SUCCESS: 'success',
+    messages.WARNING: 'warning',
+    messages.ERROR: 'danger',
+}
 
 
 # https://django-tables2.readthedocs.io/en/latest/pages/custom-rendering.html
