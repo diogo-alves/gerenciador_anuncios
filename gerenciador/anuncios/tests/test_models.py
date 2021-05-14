@@ -39,6 +39,21 @@ class AnuncioModelTest(TestCase):
     def test_compartilhamentos(self):
         self.assertEqual(self.anuncio.compartilhamentos, 705.14496)
 
+    def test_campos_data_inicio_e_data_termino_devem_ser_preenchidos(self):
+        mensagem_esperada = str({
+            'data_inicio': ['Este campo não pode ser nulo.'],
+            'data_termino': ['Este campo não pode ser nulo.']
+        })
+        with self.assertRaisesMessage(ValidationError, mensagem_esperada):
+            anuncio = Anuncio(
+                nome='Aplicativo de consulta do FGTS',
+                cliente=Cliente.objects.create(nome='Caixa'),
+                data_inicio=None,
+                data_termino=None,
+                investimento_diario=100
+            )
+            anuncio.full_clean()
+
     def test_nao_deve_haver_data_inicio_maior_que_data_final(self):
         mensagem_esperada = 'A data de início não deve ser maior que a data de término do anúncio.'
         with self.assertRaisesMessage(ValidationError, mensagem_esperada):

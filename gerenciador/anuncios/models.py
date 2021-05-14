@@ -67,7 +67,7 @@ class Anuncio(models.Model):
 
     def clean(self) -> None:
         """Realiza validações entre campos do model"""
-        if self.data_inicio > self.data_termino:
+        if self.data_inicio and self.data_termino and self.data_inicio > self.data_termino:
             raise ValidationError('A data de início não deve ser maior que a data de término do anúncio.')
 
     @property
