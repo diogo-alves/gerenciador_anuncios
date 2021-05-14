@@ -14,7 +14,7 @@ class AnuncioModelTest(TestCase):
             nome='Aplicativo de consulta do FGTS',
             cliente=Cliente.objects.create(nome='Caixa'),
             data_inicio=datetime.now(),
-            data_termino=datetime.now() + timedelta(days=5),
+            data_termino=datetime.now() + timedelta(days=4),
             investimento_diario=100
         )
 

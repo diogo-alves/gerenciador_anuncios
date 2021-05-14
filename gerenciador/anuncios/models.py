@@ -72,8 +72,8 @@ class Anuncio(models.Model):
 
     @property
     def dias_ativo(self) -> int:
-        """Retorna a quantidade de dias que o anúncio fica ativo"""
-        return (self.data_termino - self.data_inicio).days
+        """Retorna a quantidade de dias que o anúncio ficará ativo"""
+        return (self.data_termino - self.data_inicio).days + 1
 
     @property
     def total_investido(self) -> Decimal:
