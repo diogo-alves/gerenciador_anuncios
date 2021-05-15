@@ -1,6 +1,7 @@
 import django_tables2 as tables
 
-from .models import Anuncio, Cliente
+from .columns import DecimalColumn
+from ..models import Anuncio, Cliente
 
 
 class ClienteTable(tables.Table):
@@ -14,6 +15,7 @@ class ClienteTable(tables.Table):
 
 class AnuncioTable(tables.Table):
     nome = tables.Column(linkify=True)
+    investimento_diario = DecimalColumn()
 
     class Meta:
         model = Anuncio
