@@ -14,6 +14,7 @@ django-crispy-forms = "*"
 django-tables2 = "*"
 django-extensions = "*"
 crispy-bootstrap5 = "*"
+django-filter = "*"
 
 [requires]
 python_version = "3.6"

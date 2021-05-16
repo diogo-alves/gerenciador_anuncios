@@ -4,8 +4,10 @@ from django.views.generic import (
     CreateView, DetailView, UpdateView, DeleteView
 )
 
+from django_filters.views import FilterView
 from django_tables2 import SingleTableMixin, SingleTableView
 
+from .filters import AnuncioFilter
 from .forms import AnuncioForm, ClienteForm
 from .mixins import SuccessMessageDeletionMixin
 from .models import Anuncio, Cliente
@@ -102,4 +104,30 @@ class AnuncioListView(SingleTableView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['existem_objetos_cadastrados'] = self.model.objects.exists()
+        return context
+
+
+class AnuncioReportView(FilterView):
+    model = Anuncio
+    filterset_class = AnuncioFilter
+    ordering = ['nome']
+    template_name = 'anuncios/anuncio_report.html'
+
+    def get_total_geral(self):
+        totais = {
+            'investido': 0,
+            'visualizacoes': 0,
+            'cliques': 0,
+            'compartilhamentos': 0,
+        }
+        for obj in self.object_list:
+            totais['investido'] += obj.total_investido
+            totais['visualizacoes'] += obj.visualizacoes
+            totais['cliques'] += obj.cliques
+            totais['compartilhamentos'] += obj.compartilhamentos
+        return totais
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['total_geral'] = self.get_total_geral()
         return context

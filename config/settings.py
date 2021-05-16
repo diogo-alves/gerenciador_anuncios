@@ -56,6 +56,7 @@ THIRD_PARTY_APPS = [
     'django_tables2',
     'django_extensions',
     'crispy_bootstrap5',
+    'django_filters',
 ]
 
 LOCAL_APPS = [

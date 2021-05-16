@@ -1,5 +1,22 @@
 /*=============================== Geral =========================*/
 
+td, th {
+  white-space: nowrap;
+}
+
+#tableList td > a {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#tableReport td, #tableReport th {
+  width: 20%;
+}
+
+#tableReport td , #tableReport th:not(:first-child) {
+  text-align: right;
+}
+
 .asteriskField {
   display: none;
 }
@@ -29,6 +46,37 @@
 }
 
 /*========================= media queries =========================*/
+
+@media print {
+
+  body {
+    background-color: #fff
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  nav, .navbar, footer {
+    display: none;
+  }
+
+  .card-report > .card-header {
+    background: #fff
+  }
+
+  .card-report, .card-report * {
+    visibility: visible;
+  }
+
+  .container {
+    max-width:100%!important;
+  }
+
+  @page {
+    size: A4 landscape;
+  }
+}
 
 @media (max-width: 768px) {
   /*

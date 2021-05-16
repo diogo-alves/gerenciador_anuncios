@@ -33,6 +33,14 @@
               <span class="align-middle">Anúncios</span>
             </a>
           </li>
+          <li class="sidebar-header">Relatórios</li>
+          {% url 'anuncios:anuncio_report' as url_relacao_anuncios %}
+          <li class="sidebar-item{% if request.path == url_relacao_anuncios %} active{% endif %}">
+            <a href="{{ url_relacao_anuncios }}" class="sidebar-link">
+              <i class="bi bi-file-earmark-bar-graph align-middle"></i>
+              <span class="align-middle">Relação de Anúncios</span>
+            </a>
+          </li>
         </ul>
       </div>
       <div class="sidebar-footer d-none d-lg-block">

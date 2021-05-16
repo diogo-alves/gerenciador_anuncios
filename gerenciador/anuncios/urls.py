@@ -6,6 +6,7 @@ from .views import (
     AnuncioUpdateView,
     AnuncioDeleteView,
     AnuncioListView,
+    AnuncioReportView,
     ClienteCreateView,
     ClienteDetailView,
     ClienteUpdateView,
@@ -17,6 +18,7 @@ app_name = 'anuncios'
 
 urlpatterns = [
     path('', AnuncioListView.as_view(), name='anuncio_list'),
+    path('relatorios/relacao-anuncios/', AnuncioReportView.as_view(), name='anuncio_report'),
     path('novo/', AnuncioCreateView.as_view(), name='anuncio_create'),
     path('<uuid:pk>/detalhar/', AnuncioDetailView.as_view(), name='anuncio_detail'),
     path('<uuid:pk>/editar/', AnuncioUpdateView.as_view(), name='anuncio_update'),

@@ -1,0 +1,76 @@
+{% extends "base_site.html" %}
+
+{% load static %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+
+{% block title %}Relação de Anúncios - {{ block.super }}{% endblock %}
+
+{% block content %}
+  <div class="card card-report">
+    <div class="card-header p-4">
+      <div class="d-flex flex-column flex-lg-row align-items-md-end mx-4">
+        <h1 class="card-title text-nowrap me-auto">Relação de Anúncios</h1>
+        <div class="d-flex d-print-none">
+          <div class="dropdown flex-fill mr-2 no-print">
+            <button type="button" class="btn btn-outline-secondary btn-block" data-bs-toggle="dropdown">
+              <i class="bi bi-filter"></i>
+              <span>Filtrar</span>
+            </button>
+            <button type="button" class="btn btn-outline-secondary btn-block ms-2" title="Imprimir" onclick="window.print();">
+              <i class="bi bi-printer"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right">
+              <form method="get" class="p-3" autocomplete="off">
+                {{ filter.form|crispy }}
+                <div class="d-flex">
+                  <a href="{% url 'anuncios:anuncio_report' %}" class="btn btn-outline-secondary flex-fill me-2">Limpar</a>
+                  <button type="submit" class="btn btn-secondary flex-fill">Aplicar filtro</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body mx-4">
+    {% if anuncio_list.exists %}
+      <div class="table-responsive">
+        <table id="tableReport" class="table responsive">
+          <thead>
+            <tr>
+              <th scope="col">Anúncio</th>
+              <th scope="col">Total investido (R$)</th>
+              <th scope="col">Visualizações</th>
+              <th scope="col">Cliques</th>
+              <th scope="col">Compartilhamentos</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for anuncio in anuncio_list %}
+            <tr>
+              <th scope="row">{{ anuncio.nome|truncatechars:40 }}</th>
+              <td>{{ anuncio.total_investido|intcomma }}</td>
+              <td>{{ anuncio.visualizacoes|intcomma }}</td>
+              <td>{{ anuncio.cliques|intcomma }}</td>
+              <td>{{ anuncio.compartilhamentos|intcomma }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+          <tfoot>
+            <tr>
+              <th scope="col">Total Geral</th>
+              <td scope="col">{{ total_geral.investido|intcomma }}</td>
+              <td scope="col">{{ total_geral.visualizacoes|intcomma }}</td>
+              <td scope="col">{{ total_geral.cliques|intcomma }}</td>
+              <td scope="col">{{ total_geral.compartilhamentos|intcomma }}</td>
+            </tr>
+          </tfoot>
+        </table>
+      </td>
+    {% else %}
+      <p class="text-center text-muted">Nenhum anúncio encontrado.</p>
+    {% endif %}
+    </div>
+  </div>
+{% endblock content %}
