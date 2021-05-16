@@ -5,8 +5,65 @@
 {% block stylesheet %}
   {{ block.super }}
   <link href="{% static 'css/base_site.css' %}" rel="stylesheet">
+  <link href="{% static 'css/sidebar.css' %}" rel="stylesheet">
 {% endblock stylesheet %}
 
+
+{% block sidebar %}
+  <nav id="sidebar">
+    <div class="sidebar-content">
+      <a class="sidebar-brand" href="#">
+        <img class="rounded-circle bg-white" src="{% static 'img/logo_agencia.png' %}" width="48" height="48" alt="Agência 82">
+        <spam class="ms-2">Agência 82</spam>
+      </a>
+      <div class="sidebar-body">
+        <ul class="sidebar-nav">
+          <li class="sidebar-header">Cadastros</li>
+          {% url 'anuncios:cliente_list' as url_clientes %}
+          <li class="sidebar-item{% if request.path == url_clientes %} active{% endif %}">
+            <a href="{{ url_clientes }}" class="sidebar-link">
+              <i class="bi bi-people align-middle"></i>
+              <span class="align-middle">Clientes</span>
+            </a>
+          </li>
+          {% url 'anuncios:anuncio_list' as url_anuncios %}
+          <li class="sidebar-item{% if request.path == url_anuncios %} active{% endif %}">
+            <a href="{{ url_anuncios }}" class="sidebar-link">
+              <i class="bi bi-megaphone align-middle"></i>
+              <span class="align-middle">Anúncios</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="sidebar-footer d-none d-lg-block">
+        <div class="text-center">
+          <div class="media-body">
+            <div class="text-muted">
+              Versão
+              <span>1.0.0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+{% endblock sidebar %}
+
+{% block navbar %}
+  <nav class="navbar navbar-expand navbar-light bg-white">
+    <div class="container-fluid">
+      <div class="custom-toggle">
+        <button id="sidebarCollapser" type="button" class="btn sidebar-toggle">
+          <i class="bi bi-list"></i>
+        </button>
+      </div>
+      <span class="navbar-brand h1 mb-0 ms-3 me-auto">
+        <img src="{% static 'img/logo_agencia.png' %}" alt="Agência 82" width="48" height="48">
+        <strong class="navbar-brand-name">Gerenciador de Anúncios</strong>
+      </span>
+    </div>
+  </nav>
+{% endblock navbar %}
 
 {% block messages %}
   {% if messages %}{% for message in messages %}
@@ -18,10 +75,15 @@
 {% endblock messages %}
 
 {% block footer %}
-  <footer class="footer mt-auto">
+  <footer class="footer mt-auto pt-3">
     <div class="container text-muted text-center">
-      <p>Feito com <i class="bi bi-heart-fill"></i> &amp; <a href="https://www.djangoproject.com/"><img src="{% static "img/django.svg" %}" alt="Django"/></a> por <a href="https://www.linkedin.com/mwlite/in/diogoalvesti" class="text-decoration-none"><strong class="text-reset">Diogo Alves</strong></a>
+      <p>Feito com <i class="bi bi-heart-fill"></i> &amp; <a href="https://www.djangoproject.com/"><img src="{% static 'img/django.svg' %}" alt="Django"/></a> por <a href="https://www.linkedin.com/mwlite/in/diogoalvesti" class="text-decoration-none"><strong class="text-reset">Diogo Alves</strong></a>
       </p>
     </div>
   </footer>
 {% endblock footer %}
+
+{% block javascript %}
+  {{ block.super }}
+  <script src="{% static 'js/base_site.js' %}"></script>
+{% endblock javascript %}

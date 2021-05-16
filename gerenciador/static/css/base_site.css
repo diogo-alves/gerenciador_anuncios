@@ -1,18 +1,41 @@
+/*=============================== Geral =========================*/
+
 .asteriskField {
   display: none;
 }
 
-.bi-heart-fill {
-  font-size: 0.8em;
+/*==================== Mensagens de alertas =====================*/
+
+.alert {
+  border-width: 0px;
+  border-left: 6px solid gray;
+  border-radius: 0 .25rem .25rem 0;
 }
 
-#tableList td > a {
-  font-weight: bold;
-  text-decoration: none;
+.alert-danger {
+  border-left-color: #721c24;
 }
 
-@media (max-width: 991.98px){
-  footer.footer {
+.alert-info {
+  border-left-color: #0c5460;
+}
+
+.alert-success {
+  border-left-color: #155724;
+}
+
+.alert-warning {
+  border-left-color: #856404;
+}
+
+/*========================= media queries =========================*/
+
+@media (max-width: 768px) {
+  /*
+    evita quebra dos elementos ao rolar para a esquerda
+    enquanto a sidebar estiver aberta
+  */
+  footer.footer, .navbar {
     width: 100vw;
   }
 }
