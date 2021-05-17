@@ -151,6 +151,6 @@ Neste projeto optei por utilizar as seguintes tecnologias:
 
 ## 📝 Licença
 
-Este projeto esta sobe a licença [MIT](./LICENSE).
+Este projeto está sob a licença [MIT](./LICENSE).
 
 Feito com ❤️ por Diogo Alves 👋 [Entre em contato!](https://www.linkedin.com/in/diogoalvesti/)
