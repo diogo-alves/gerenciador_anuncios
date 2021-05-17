@@ -23,3 +23,9 @@
     </div>
   </div>
 {% endblock content %}
+
+{% block javascript %}
+  {{ block.super }}
+  <script src="{% static 'js/inputmask.min.js' %}"></script>
+  <script src="{% static 'anuncios/js/app.js' %}"></script>
+{% endblock javascript %}
