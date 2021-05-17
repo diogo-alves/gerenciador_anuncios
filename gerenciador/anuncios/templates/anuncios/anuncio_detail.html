@@ -63,7 +63,7 @@
           <h3>Projeções</h3>
           <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 text-center">
             <div class="col mb-3">
-              <div class="card rounded-3 shadow-sm h-100">
+              <div class="card card-total money rounded-3 shadow-sm h-100">
                 <div class="card-body">
                   <h2 class="card-title">R$ {{ anuncio.total_investido|intcomma }}</h2>
                   <p class="card-text">Investido{{ anuncio.total_investido|pluralize }}</p>
@@ -71,15 +71,15 @@
               </div>
             </div>
             <div class="col mb-3">
-              <div class="card rounded-3 shadow-sm h-100">
+              <div class="card card-total views rounded-3 shadow-sm h-100">
                 <div class="card-body">
                   <h2 class="card-title">{{ anuncio.visualizacoes|intcomma }}</h2>
-                  <p class="card-title">Visualizaç{{ anuncio.visualizacoes|pluralize:"ão,ões" }}</p>
+                  <p class="card-text">Visualizaç{{ anuncio.visualizacoes|pluralize:"ão,ões" }}</p>
                 </div>
               </div>
             </div>
             <div class="col mb-3">
-              <div class="card rounded-3 shadow-sm h-100">
+              <div class="card card-total clicks rounded-3 shadow-sm h-100">
                 <div class="card-body">
                   <h2 class="card-title">{{ anuncio.cliques|intcomma }}</h2>
                   <p class="card-text">Clique{{ anuncio.cliques|pluralize }}</p>
@@ -87,7 +87,7 @@
               </div>
             </div>
             <div class="col mb-3">
-              <div class="card rounded-3 shadow-sm h-100">
+              <div class="card card-total shares rounded-3 shadow-sm h-100">
                 <div class="card-body">
                   <h2 class="card-title">{{ anuncio.compartilhamentos|intcomma }}</h2>
                   <p class="card-text">Compartilhamento{{ anuncio.compartilhamentos|pluralize }}</p>

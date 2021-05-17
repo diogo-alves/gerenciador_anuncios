@@ -73,11 +73,11 @@
         },
         "django-tables2": {
             "hashes": [
-                "sha256:50ccadbd13740a996d8a4d4f144ef80134745cd0b5ec278061537e341f5ef7a2",
-                "sha256:af5f70a9845fd8690c6b44120b065e55b9771cae99c1dcd0eb4f1cfa3f0a71e4"
+                "sha256:0f10ecef25708385a9d32d68d7c9478ca8dda31569410cb05a025be3f2c57593",
+                "sha256:4eb526464ee56a0b7d827d1da9a4f257e44edb5e1cbb6a0cfb6ca0fed70d8e4f"
             ],
             "index": "pypi",
-            "version": "==2.3.4"
+            "version": "==2.4.0"
         },
         "psycopg2-binary": {
             "hashes": [
