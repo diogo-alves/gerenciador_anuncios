@@ -76,7 +76,7 @@ Antes de começar, você vai precisar ter as seguintes ferramentas instaladas em
 ```bash
 
 # Clone este repositório
-$ git clone https://github.com/diogo-alves/gerenciador_anuncios
+$ git clone https://github.com/diogo-alves/gerenciador_anuncios.git
 
 # Acesse a pasta do projeto no terminal/cmd
 $ cd gerenciador_anuncios
