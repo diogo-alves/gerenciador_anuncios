@@ -12,9 +12,9 @@
 {% block sidebar %}
   <nav id="sidebar">
     <div class="sidebar-content">
-      <a class="sidebar-brand" href="#">
+      <a class="sidebar-brand" href="{% url 'core:home' %}">
         <img class="rounded-circle bg-white" src="{% static 'img/logo_agencia.png' %}" width="48" height="48" alt="Agência 82">
-        <spam class="ms-2">Agência 82</spam>
+        <spam class="ms-2">Divulga Tudo</spam>
       </a>
       <ul class="sidebar-nav">
         <li class="sidebar-header">Cadastros</li>
@@ -64,7 +64,7 @@
         </button>
       </div>
       <span class="navbar-brand h1 mb-0 ms-3 me-auto">
-        <img src="{% static 'img/logo_agencia.png' %}" alt="Agência 82" width="48" height="48">
+        <img src="{% static 'img/logo_agencia.png' %}" alt="Agência Divulga Tudo" width="48" height="48">
         <strong class="navbar-brand-name">Gerenciador de Anúncios</strong>
       </span>
     </div>
@@ -91,5 +91,6 @@
 
 {% block javascript %}
   {{ block.super }}
+  <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
   <script src="{% static 'js/base_site.js' %}"></script>
 {% endblock javascript %}

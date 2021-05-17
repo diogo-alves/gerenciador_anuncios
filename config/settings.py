@@ -60,6 +60,7 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
+    'gerenciador.core.apps.CoreConfig',
     'gerenciador.anuncios.apps.AnunciosConfig',
 ]
 
