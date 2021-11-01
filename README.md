@@ -1,5 +1,5 @@
 <h1 align="center">
-    📣 <a href="#" alt="Sistema gerenciador de anúncios"> Gerenciador de anúncios </a>
+    📣 <a href="https://gerenciador-anuncios.herokuapp.com/" alt="Sistema gerenciador de anúncios"> Gerenciador de anúncios </a>
 </h1>
 
 <h3 align="center">
@@ -32,7 +32,9 @@
 
 ## 💻 Sobre o projeto
 
-🏆 Projeto desenvolvido para o desafio de seleção da [Capgemini Brasil](http://capgemini.proway.com.br/).
+🏆 Projeto desenvolvido para o desafio de seleção da [Capgemini Brasil](http://capgemini.proway.com.br/). Clique [aqui](https://gerenciador-anuncios.herokuapp.com/) para acessá-lo.
+
+![](https://i.imgur.com/2MEjGW2.png)
 
 ---
 
