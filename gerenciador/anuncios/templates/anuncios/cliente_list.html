@@ -25,13 +25,15 @@
       <div class="card-body mx-4">{% render_table table %}</div>
     </div>
   {% else %}
-    <div class="jumbotron bg-transparent text-center">
-      <h2 class="jumbotron-heading">Cadastre um novo cliente</h2>
-      <p class="lead text-muted">Está meio vazio aqui... Clique no botão abaixo para cadastrar seu 1º cliente.</p>
-      <a class="btn btn-primary" href="{% url 'anuncios:cliente_create' %}">
-        <i class="bi bi-plus-lg" aria-hidden="true"></i>
-        <span>Novo cliente</span>
-      </a>
+    <div class="p-5 mb-5 bg-transparent text-center">
+      <div class="container-fluid py-5">
+        <h2 class="jumbotron-heading">Cadastre um novo cliente</h2>
+        <p class="lead text-muted">Está meio vazio aqui... Clique no botão abaixo para cadastrar seu 1º cliente.</p>
+        <a class="btn btn-primary" href="{% url 'anuncios:cliente_create' %}">
+          <i class="bi bi-plus-lg" aria-hidden="true"></i>
+          <span>Novo cliente</span>
+        </a>
+      </div>
     </div>
   {% endif %}
 
